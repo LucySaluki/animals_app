@@ -3,8 +3,8 @@ from models.owner import Owner
 from models.animal import Animal
 
 def save(owner):
-    sql = "INSERT INTO owners (name) VALUES (%s) RETURNING *"
-    values = [owner.name]
+    sql = "INSERT INTO owners (first_name, surname) VALUES (%s, %s) RETURNING *"
+    values = [owner.first_name, owner.surname]
     result = run_sql(sql, values)[0]
     id = result['id']
     owner.id = id
@@ -16,7 +16,7 @@ def select_all():
     results = run_sql(sql)
 
     for row in results:
-        owner = Owner(row['name'], row['id'])
+        owner = Owner(row['first_name'], row['surname'], row['id'])
         owners.append(owner)
 
     return owners
@@ -28,8 +28,7 @@ def select(id):
     result = run_sql(sql, values)[0]
     
     if result is not None:
-        owner = Owner(result['name'], id)
-    
+        owner = Owner(result['first_name'], result['surname'], id)
     return owner
 
 def delete_all():

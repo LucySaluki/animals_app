@@ -17,7 +17,7 @@
     <label for="owner_id">Owner:</label>
     <select id="owner" name="owner_id">
       {% for owner in owners %}
-        <option value="{{ owner.id }}">{{ owner.name }}</option>
+        <option value="{{ owner.id }}">{{ owner.first_name }} {{ owner.surname }}</option>
       {% endfor %}
     </select>
   </div>

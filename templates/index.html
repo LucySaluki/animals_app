@@ -3,15 +3,12 @@
 <div class=container>
 {% for animal in animals %}
   <div class="animals">
-    <div class="content">
-        {{animal.name}}
-      <div class="description">
-        {{animal.species}} : {{animal.breed}}
-      </div>
+    <div class="species">
+        {{animal.species}}: {{animal.name}}
       <div class="owner">
-        {{animal.owner.name}}
+        {{animal.owner.first_name }} {{animal.owner.surname }}
       </div>
-      <a href="/animals/{{ animal.id }}">Details</a>
+      <a href="/animals/{{ animal.id }}">More details</a>
     </div>
   </div>
 </div>

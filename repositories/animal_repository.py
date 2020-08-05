@@ -5,8 +5,8 @@ from models.animal import Animal
 
 
 def save(animal):
-    sql = "INSERT INTO animals (name, species, breed, owner_id) VALUES (%s, %s, %s, %s) RETURNING *"
-    values = [animal.name, animal.species, animal.breed, animal.owner.id]
+    sql = "INSERT INTO animals (name, species, breed, age, picture, owner_id) VALUES (%s, %s, %s, %s, %s, %s) RETURNING *"
+    values = [animal.name, animal.species, animal.breed, animal.age, animal.picture, animal.owner.id]
     result = run_sql(sql, values)[0]
     id = result['id']
     animal.id = id
@@ -19,7 +19,7 @@ def select_all():
 
     for row in results:
         owner = owner_repository.select(row['owner_id'])
-        animal = Animal(row['name'], row['species'], row['breed'], owner, row['id'])
+        animal = Animal(row['name'], row['species'], row['breed'], row['age'], row['picture'], owner, row['id'])
         animals.append(animal)
 
     return animals
@@ -32,7 +32,7 @@ def select(id):
     
     if result is not None:
         owner = owner_repository.select(result['owner_id'])
-        animal = Animal(result['name'], result['species'], result['breed'], owner, id)
+        animal = Animal(result['name'], result['species'], result['breed'], result['age'], result['picture'], owner, id)
     
     return animal
 

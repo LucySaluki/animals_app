@@ -27,9 +27,11 @@ def create_animal():
     name = request.form["name"]
     species = request.form["species"]
     breed = request.form["breed"]
+    age = request.form["age"]
+    picture = request.form["picture"]
     owner_id = request.form["owner_id"]
     owner = owner_repository.select(owner_id)
-    new_animal = Animal(name, species, breed, owner)
+    new_animal = Animal(name, species, breed, age, picture, owner)
     animal_repository.save(new_animal)
     return redirect("/animals")
 
