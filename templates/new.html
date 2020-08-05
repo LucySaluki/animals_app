@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+<form action="/animals" method="post">
+  <div>
+    <label for="name">Name:</label>
+    <input type="text" id="description" name="name" placeholder="name" required autofocus>
+  </div>
+  <div>
+    <label for="species">Species:</label>
+    <input type="text" id="species" name="species" placeholder="Species" required>
+  </div>
+  <div>
+    <label for="breed">Breed:</label>
+    <input type="text" id="breed" name="breed" placeholder="breed" required autofocus>
+  </div>
+  <div>
+    <label for="owner_id">Owner:</label>
+    <select id="owner" name="owner_id">
+      {% for owner in owners %}
+        <option value="{{ owner.id }}">{{ owner.name }}</option>
+      {% endfor %}
+    </select>
+  </div>
+  <button type="submit">Add Animal</button>
+</form>
+
+{% endblock %}

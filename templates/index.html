@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+<div class=container>
+{% for animal in animals %}
+  <div class="animals">
+    <div class="content">
+        {{animal.name}}
+      <div class="description">
+        {{animal.species}} : {{animal.breed}}
+      </div>
+      <div class="owner">
+        {{animal.owner.name}}
+      </div>
+      <a href="/animals/{{ animal.id }}">Details</a>
+    </div>
+  </div>
+</div>
+{% endfor %}
+{% endblock %}
